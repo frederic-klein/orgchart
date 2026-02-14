@@ -1,101 +1,270 @@
-/* Tree with proper connecting lines */
-.tree-node {
-  position: relative;
+/* Modern org chart styling */
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
 }
 
+/* Person card styling */
 .person-card {
-  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 220px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   position: relative;
+  transition: box-shadow 0.2s ease;
 }
 
 .person-card:hover {
-  transform: translateX(2px);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Children container with left border as main vertical line */
-.children-container {
-  position: relative;
-  margin-left: 20px;
-  padding-left: 24px;
-  border-left: 2px solid #d1d5db;
-}
-
-/* Horizontal connector from vertical line to role column header */
-.role-column {
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.role-column::before {
-  content: '';
-  position: absolute;
-  left: -24px;
-  top: 12px;
-  width: 24px;
-  height: 2px;
-  background-color: #d1d5db;
-}
-
-/* Child items within role column */
-.child-item {
-  position: relative;
-  padding-left: 20px;
-}
-
-/* Vertical line for siblings */
-.child-item::before {
+/* Colored left border accent */
+.person-card::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background-color: #d1d5db;
+  width: 4px;
+  border-radius: 8px 0 0 8px;
+  background: var(--team-color, #6366f1);
 }
 
-/* Horizontal connector to each child */
-.child-item::after {
+/* Avatar circle */
+.person-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.person-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.person-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.person-role {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 1px;
+}
+
+.person-team {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.person-counts {
+  font-size: 10px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* Tree structure */
+.tree-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vertical line from parent to children row */
+.tree-node > .children-wrapper::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 20px;
-  width: 16px;
-  height: 2px;
-  background-color: #d1d5db;
+  top: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #d1d5db;
 }
 
-/* Last child - cut the vertical line */
-.child-item:last-child::before {
-  bottom: calc(100% - 20px);
-}
-
-/* First child - start vertical line from connector */
-.child-item:first-child::before {
-  top: 20px;
-}
-
-/* Only child - no vertical line needed */
-.child-item:only-child::before {
-  display: none;
-}
-
-/* Subtle background for role columns */
-.role-column-content {
-  background: linear-gradient(to right, rgba(243, 244, 246, 0.3), transparent);
-  padding: 8px;
-  padding-left: 0;
-  border-radius: 0 8px 8px 0;
-}
-
-/* Team group styling */
-.team-group {
+.children-wrapper {
   position: relative;
-  padding-left: 12px;
-  border-left: 2px solid #c4b5fd;
-  margin-left: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
 }
 
-.team-group:last-child {
-  margin-bottom: 0;
+/* Horizontal line connecting siblings */
+.children-row {
+  display: flex;
+  gap: 24px;
+  position: relative;
+}
+
+.children-row::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  background: #d1d5db;
+  width: calc(100% - 50px);
+}
+
+/* Child node connector */
+.child-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.child-branch::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background: #d1d5db;
+}
+
+/* Role group header */
+.role-group {
+  margin-bottom: 16px;
+}
+
+.role-header {
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  background: #f9fafb;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.role-header span {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Team colors */
+.team-executive { --team-color: #6366f1; }
+.team-engineering { --team-color: #10b981; }
+.team-product { --team-color: #f59e0b; }
+.team-design { --team-color: #ec4899; }
+.team-sales { --team-color: #3b82f6; }
+.team-marketing { --team-color: #8b5cf6; }
+.team-hr { --team-color: #14b8a6; }
+.team-finance { --team-color: #f97316; }
+.team-operations { --team-color: #64748b; }
+.team-default { --team-color: #6b7280; }
+
+/* Vertical list layout for children */
+.children-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  padding-left: 32px;
+  margin-top: 16px;
+}
+
+.children-vertical::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 20px;
+  width: 2px;
+  background: #d1d5db;
+}
+
+.child-item-vertical {
+  position: relative;
+}
+
+.child-item-vertical::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 22px;
+  width: 22px;
+  height: 2px;
+  background: #d1d5db;
+}
+
+/* Role columns layout */
+.role-columns {
+  display: flex;
+  gap: 40px;
+  margin-top: 24px;
+  position: relative;
+}
+
+.role-columns::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  width: 2px;
+  height: 24px;
+  background: #d1d5db;
+}
+
+.role-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.role-column::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  width: 2px;
+  height: 12px;
+  background: #d1d5db;
+}
+
+/* Team subgroup */
+.team-subgroup {
+  margin-bottom: 12px;
+}
+
+.team-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #8b5cf6;
+  margin-bottom: 6px;
+  padding-left: 4px;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 12px;
+  border-left: 2px solid #e5e7eb;
 }

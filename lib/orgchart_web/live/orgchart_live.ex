@@ -78,9 +78,9 @@ defmodule OrgchartWeb.OrgchartLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="min-h-screen bg-gray-50 py-8">
+    <div class="min-h-screen bg-gray-100 py-8">
       <div class="mx-auto px-4">
-        <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">Organization Chart</h1>
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Organization Chart</h1>
 
         <.upload_form uploads={@uploads} />
 
@@ -90,8 +90,10 @@ defmodule OrgchartWeb.OrgchartLive do
 
         <%= if @root do %>
           <.stats_legend stats={@stats} />
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <.tree_node person={@root} />
+          <div class="bg-white rounded-xl shadow-sm p-8 overflow-x-auto">
+            <div class="org-chart">
+              <.tree_node person={@root} is_root={true} />
+            </div>
           </div>
         <% end %>
       </div>
@@ -208,49 +210,83 @@ defmodule OrgchartWeb.OrgchartLive do
       end)
       |> Enum.sort_by(fn {role, _, _} -> role end)
 
-    assigns = assign(assigns, :children_by_role_and_team, children_by_role_and_team)
+    assigns =
+      assigns
+      |> assign(:children_by_role_and_team, children_by_role_and_team)
+      |> assign_new(:is_root, fn -> false end)
+      |> assign(:initials, get_initials(assigns.person.name))
+      |> assign(:team_class, team_to_class(assigns.person.team))
 
     ~H"""
     <div class="tree-node">
-      <div class="person-card inline-block bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-200 rounded-lg px-4 py-3">
-        <div class="font-semibold text-gray-900">{@person.name}</div>
-        <div class="text-sm text-blue-600">{@person.role}</div>
-        <div class="text-xs text-gray-500">{@person.team}</div>
-        <%= if @person.total_count > 0 do %>
-          <div class="text-xs text-gray-400 mt-1">
-            {@person.total_count} total / {@person.direct_count} direct
-          </div>
-        <% end %>
-      </div>
+      <.person_card person={@person} initials={@initials} team_class={@team_class} />
 
       <%= if @children_by_role_and_team != [] do %>
-        <div class="children-container">
-          <div class="flex flex-wrap gap-8">
-            <%= for {role, role_count, teams_map} <- @children_by_role_and_team do %>
-              <div class="role-column min-w-[220px]">
-                <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3 pb-1 border-b border-gray-300">
-                  {role} <span class="text-gray-400">({role_count})</span>
-                </div>
-                <div class="role-column-content">
-                  <%= for {team, children} <- teams_map do %>
-                    <div class="team-group mb-3">
-                      <div class="text-xs text-purple-600 font-medium mb-1 pl-1">
-                        {team}
-                      </div>
-                      <%= for child <- children do %>
-                        <div class="child-item">
-                          <.tree_node person={child} />
-                        </div>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
+        <div class="role-columns">
+          <%= for {role, role_count, teams_map} <- @children_by_role_and_team do %>
+            <div class="role-column">
+              <div class="role-header">
+                {role} <span>({role_count})</span>
               </div>
-            <% end %>
-          </div>
+              <%= for {team, children} <- teams_map do %>
+                <div class="team-subgroup">
+                  <div class="team-label">{team}</div>
+                  <div class="team-members">
+                    <%= for child <- children do %>
+                      <.tree_node person={child} />
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
     """
+  end
+
+  defp person_card(assigns) do
+    ~H"""
+    <div class={"person-card #{@team_class}"}>
+      <div class="person-avatar">{@initials}</div>
+      <div class="person-info">
+        <div class="person-name">{@person.name}</div>
+        <div class="person-role">{@person.role}</div>
+        <div class="person-team">{@person.team}</div>
+        <%= if @person.total_count > 0 do %>
+          <div class="person-counts">
+            {@person.total_count} total / {@person.direct_count} direct
+          </div>
+        <% end %>
+      </div>
+    </div>
+    """
+  end
+
+  defp get_initials(name) do
+    name
+    |> String.split()
+    |> Enum.take(2)
+    |> Enum.map(&String.first/1)
+    |> Enum.join()
+    |> String.upcase()
+  end
+
+  defp team_to_class(team) do
+    team_lower = String.downcase(team)
+
+    cond do
+      String.contains?(team_lower, "executive") -> "team-executive"
+      String.contains?(team_lower, "engineering") -> "team-engineering"
+      String.contains?(team_lower, "product") -> "team-product"
+      String.contains?(team_lower, "design") -> "team-design"
+      String.contains?(team_lower, "sales") -> "team-sales"
+      String.contains?(team_lower, "marketing") -> "team-marketing"
+      String.contains?(team_lower, "hr") or String.contains?(team_lower, "human") -> "team-hr"
+      String.contains?(team_lower, "finance") -> "team-finance"
+      String.contains?(team_lower, "operation") -> "team-operations"
+      true -> "team-default"
+    end
   end
 end
