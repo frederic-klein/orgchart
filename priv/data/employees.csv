@@ -1,0 +1,25 @@
+name;role;team;lead
+Sarah Johnson;CEO;Executive;
+Michael Chen;VP Engineering;Engineering;Sarah Johnson
+Emily Davis;VP Product;Product;Sarah Johnson
+James Wilson;VP Sales;Sales;Sarah Johnson
+Lisa Anderson;Engineering Manager;Engineering;Michael Chen
+David Martinez;Engineering Manager;Engineering;Michael Chen
+Jennifer Taylor;Senior Engineer;Engineering;Lisa Anderson
+Robert Brown;Senior Engineer;Engineering;Lisa Anderson
+Amanda Lee;Engineer;Engineering;Lisa Anderson
+Kevin Garcia;Senior Engineer;Engineering;David Martinez
+Michelle Robinson;Engineer;Engineering;David Martinez
+Daniel Clark;Engineer;Engineering;David Martinez
+Rachel Lewis;Product Manager;Product;Emily Davis
+Thomas Walker;Product Manager;Product;Emily Davis
+Jessica Hall;Designer;Product;Rachel Lewis
+Steven Allen;Designer;Product;Rachel Lewis
+Nicole Young;Analyst;Product;Thomas Walker
+Christopher King;Sales Manager;Sales;James Wilson
+Stephanie Wright;Sales Manager;Sales;James Wilson
+Jason Lopez;Account Executive;Sales;Christopher King
+Ashley Hill;Account Executive;Sales;Christopher King
+Matthew Scott;Account Executive;Sales;Stephanie Wright
+Lauren Green;Account Executive;Sales;Stephanie Wright
+Brian Adams;Account Executive;Sales;Stephanie Wright

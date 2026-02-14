@@ -1,0 +1,101 @@
+/* Tree with proper connecting lines */
+.tree-node {
+  position: relative;
+}
+
+.person-card {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.person-card:hover {
+  transform: translateX(2px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Children container with left border as main vertical line */
+.children-container {
+  position: relative;
+  margin-left: 20px;
+  padding-left: 24px;
+  border-left: 2px solid #d1d5db;
+}
+
+/* Horizontal connector from vertical line to role column header */
+.role-column {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.role-column::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 12px;
+  width: 24px;
+  height: 2px;
+  background-color: #d1d5db;
+}
+
+/* Child items within role column */
+.child-item {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Vertical line for siblings */
+.child-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #d1d5db;
+}
+
+/* Horizontal connector to each child */
+.child-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 16px;
+  height: 2px;
+  background-color: #d1d5db;
+}
+
+/* Last child - cut the vertical line */
+.child-item:last-child::before {
+  bottom: calc(100% - 20px);
+}
+
+/* First child - start vertical line from connector */
+.child-item:first-child::before {
+  top: 20px;
+}
+
+/* Only child - no vertical line needed */
+.child-item:only-child::before {
+  display: none;
+}
+
+/* Subtle background for role columns */
+.role-column-content {
+  background: linear-gradient(to right, rgba(243, 244, 246, 0.3), transparent);
+  padding: 8px;
+  padding-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Team group styling */
+.team-group {
+  position: relative;
+  padding-left: 12px;
+  border-left: 2px solid #c4b5fd;
+  margin-left: 4px;
+}
+
+.team-group:last-child {
+  margin-bottom: 0;
+}

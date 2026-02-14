@@ -1,0 +1,38 @@
+name;role;team;lead
+Frederic Klein;Head of UX, Software & Cloud Engineering;;
+Marco Moscher; Team Lead Cloud Engineering; Q.wiki Cloud Engineering; Frederic Klein
+Alexander Alexandrowitz; Cloud Engineer; Q.wiki Cloud Engineering; Marco Moscher
+Johannes Roos; Enabling Team; Q.wiki Enabling Team; Frederic Klein
+Andrè Tebart; Enabling Team; Q.wiki Enabling Team; Frederic Klein
+Martin Knorr; Team Lead UX; Q.wiki UX; Frederic Klein
+Isabelle Malmendier; UX; Q.wiki UX; Martin Knorr
+Pascal Brunner;Team Lead Q.wiki Software Engineering;Q.wiki Software Engineering;Frederic Klein
+Marine Raimbault;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Marcel Postel;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Artur Less;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Anita Uppenkamp;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Kevin Sommer;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Till Dorschel;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Ehsan Badakhshan;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Andreas Mergl;Software Engineer;Q.wiki Software Engineering;Pascal Brunner
+Elisabeth Tran; MATSE/Duales Studium; Q.wiki Software Engineering; Pascal Brunner
+Samuel Schüder; MATSE/Duales Studium; Q.wiki Software Engineering; Pascal Brunner
+Laura Gavardi; MATSE/Duales Studium; Q.wiki Software Engineering; Pascal Brunner
+Quoc Anh Nguyen; MATSE/Duales Studium; Q.wiki Software Engineering; Pascal Brunner
+Aaron Bübl;Team Lead Backend Engineering;Orgavision;Frederic Klein
+Martin Blankenstein;DevOps Engineer;Orgavision;Aaron Bübl
+Kai Bösfeldt;DevOps Engineer;Orgavision;Aaron Bübl
+Karsten Gabriel;DevOps Engineer;Orgavision;Aaron Bübl
+Lennart Glauer;DevOps Engineer;Orgavision;Aaron Bübl
+Lars Leithold;DevOps Engineer;Orgavision;Aaron Bübl
+Paul Moeller-Friedrich;DevOps Engineer;Orgavision;Aaron Bübl
+Benjamin Hagemeister;DevOps Engineer;IM;Aaron Bübl
+Thi Yen Thu Nguyen;DevOps Engineer;IM;Aaron Bübl
+Karl-Philipp Richter;DevOps Engineer;IM;Aaron Bübl
+Dirk Elbeshausen; Team Lead Frontend Engineering; Orgavision; Frederic Klein
+Felix Büchner; Frontend Engineer; IM; Dirk Elbeshausen
+Robert Laurenz Marquardt; Frontend Engineer; IM; Dirk Elbeshausen
+Levin Rickert; Frontend Engineer; Orgavision; Dirk Elbeshausen
+Joshua Stübner; Frontend Engineer; Orgavision; Dirk Elbeshausen
+Tamàs Szitàs; Frontend Engineer; Orgavision; Dirk Elbeshausen
+Anika Szuppa; Frontend Engineer; Orgavision; Dirk Elbeshausen

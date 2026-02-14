@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
+  "packages": [
+    "beam28Packages.elixir_1_19@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "mix deps.get",
+      "echo 'Org Chart Generator - Devbox Shell'",
+      "echo 'Run: mix phx.server to start the application'"
+    ],
+    "scripts": {
+      "test": ["mix test"],
+      "dev": ["mix deps.clean --all", "mix deps.get", "mix compile", "mix phx.server"]
+    }
+  }
+}
